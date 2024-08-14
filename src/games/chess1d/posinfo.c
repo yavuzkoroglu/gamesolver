@@ -70,13 +70,30 @@ bool construct_posinfo(PositionInfo* const pos, char const* const str, uint64_t 
     switch (str[POSINFO_STR_TURN_ID]) {
         case C1D_TURN_WHITE_SYMBOL:
             pos->turn = C1D_TURN_WHITE;
-            return 1;
         case C1D_TURN_BLACK_SYMBOL:
             pos->turn = C1D_TURN_BLACK;
-            return 1;
         default:
             return 0;
     }
+
+    switch (str[POSINFO_STR_REPETITIONS_ID]) {
+        case '1':
+            pos->nRepetitions = 1
+        case '2':
+            pos->nRepetitions = 2
+        case '3':
+            pos->nRepetitions = 3
+        default:
+            return 0;
+    }
+
+    eval_c1d(pos);
+
+    return isValid_posinfo(pos);
+}
+
+static void eval_c1d(Chess1DPosition* const pos) {
+    DEBUG_ERROR_IF(pos == NULL)
 }
 
 uint32_t getSqVal_c1d(Chess1DPosition const* const pos, uint32_t const i) {

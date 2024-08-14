@@ -5,7 +5,7 @@ GAMES=chess1d rubiks2by2 tictactoe upsidedown
 INCLUDES=-Iinclude -Ipadkit/include
 
 ifndef (${GAMENAME})
-GAMENAME=chess1d
+GAMENAME=upsidedown
 endif
 
 OBJECTS=                            \
@@ -47,20 +47,11 @@ obj: ; mkdir obj
 
 obj/games: obj; mkdir obj/games
 
-obj/games/chess1d: obj/games; mkdir obj/games/chess1d
-
-obj/games/chess1d/posinfo.o:                \
-    obj/games/chess1d                       \
-    include/games/chess1d/posinfo.h         \
-    padkit/include/padkit/bliterals.h       \
-    padkit/include/padkit/chunk.h           \
-    padkit/include/padkit/chunkset.h        \
-    padkit/include/padkit/debug.h           \
-    src/games/chess1d/posinfo.c             \
-    ; ${COMPILE} ${INCLUDES} src/games/chess1d/posinfo.c -c -o obj/games/chess1d/posinfo.o
+obj/games/upsidedown: obj/games; mkdir obj/games/chess1d
 
 obj/gamesolver.o: obj                       \
     include/games.h                         \
+    include/games/${GAMENAME}/posinfo.h     \
     include/gametree.h                      \
     include/gametree/ply.h                  \
     include/gametree/position.h             \
@@ -77,6 +68,7 @@ obj/gametree: obj; mkdir obj/gametree
 
 obj/gametree.o: obj                         \
     include/games.h                         \
+    include/games/${GAMENAME}/posinfo.h     \
     include/gametree.h                      \
     include/gametree/ply.h                  \
     include/gametree/position.h             \
@@ -91,6 +83,7 @@ obj/gametree.o: obj                         \
 
 obj/gametree/position.o: obj/gametree       \
     include/games.h                         \
+    include/games/${GAMENAME}/posinfo.h     \
     include/gametree/position.h             \
     padkit/include/padkit/chunk.h           \
     padkit/include/padkit/chunkset.h        \

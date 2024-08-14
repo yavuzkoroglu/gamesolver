@@ -42,7 +42,7 @@
 
     #define POSINFO_GUESS_NPLIES        (16)
     #define POSINFO_GUESS_NPARENTS      (4)
-    #define POSINFO_STR_LEN             (10)
+    #define POSINFO_STR_LEN             (11)
     #define POSINFO_STR_WHITESPACE_ID   (8)
     #define POSINFO_STR_TURN_ID         (9)
 
@@ -54,8 +54,7 @@
         uint32_t is_draw:1;
         uint32_t is_insufficientMaterial:1;
         uint32_t is_stalemate:1;
-        uint32_t is_threeFoldRepetition:1;
-        uint32_t last_bit:1;
+        uint32_t nRepetitions:2;
     } Chess1DPosition, PositionInfo;
 
     bool canMoveFrom_c1d(Chess1DPosition* const pos, uint32_t const from);
