@@ -1,6 +1,8 @@
 #include "gametree.h"
 #include "padkit/debug.h"
 
+static void prepareStatic_gtree(void);
+
 int constructEmpty_gtree(GameTree* const gTree, FILE* const posStream) {
     prepareStatic_gtree();
 
@@ -65,11 +67,21 @@ bool isValid_gtree(GameTree const* const gTree) {
     return 1;
 }
 
-void prepareStatic_gtree(void) {
+static void prepareStatic_gtree(void) {
     static bool is_prepareStaticCalled = 0;
 
     if (!is_prepareStaticCalled) {
         prepareStatic_posinfo();
         is_prepareStaticCalled = 1;
     }
+}
+
+bool solve_gtree(GameTree* const gTree, uint32_t const depth, uint32_t const maxDepth) {
+    DEBUG_ASSERT(isValid_gtree(gTree))
+    DEBUG_ERROR_IF(maxDepth == UINT32_MAX)
+
+    if (depth > maxDepth)
+        return 0;
+
+    return 1;
 }

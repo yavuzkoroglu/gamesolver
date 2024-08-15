@@ -20,5 +20,5 @@
 
     bool isValid_gtree(GameTree const* const gTree);
 
-    void prepareStatic_gtree(void);
+    bool solve_gtree(GameTree* const gTree, uint32_t const depth, uint32_t const maxDepth);
 #endif

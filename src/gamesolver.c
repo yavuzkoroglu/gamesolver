@@ -17,6 +17,9 @@ int main(int argc, char* argv[]) {
     if (sscanf(argv[2], "%"SCNu32, &maxDepth) != 1) {
         printf("\nERROR: <max-depth> must be a positive integer\n\n");
         return EXIT_FAILURE;
+    } else if (maxDepth == UINT32_MAX) {
+        printf("\nERROR: <max-depth> cannot be %"PRIu32"\n\n", maxDepth);
+        return EXIT_FAILURE;
     }
 
     GameTree* const gTree = malloc(sizeof(GameTree));
@@ -44,6 +47,10 @@ int main(int argc, char* argv[]) {
             printf("\nERROR: Unknown\n\n");
             free(gTree);
             return EXIT_FAILURE;
+    }
+
+    if (solve_gtree(gTree, 0, maxDepth)) {
+    } else {
     }
 
     free_gtree(gTree);

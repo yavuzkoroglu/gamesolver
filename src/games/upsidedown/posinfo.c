@@ -35,7 +35,7 @@ bool fromString_posinfo(PositionInfo* const pos, char const* const str, uint64_t
         free(coins);
         return 0;
     }
-    if (pos->m == UINT32_MAX) {
+    if (pos->m > pos->n) {
         free(coins);
         return 0;
     }
@@ -68,7 +68,7 @@ bool isValid_posinfo(PositionInfo const* const pos) {
     if (pos->n == 0)                        return 0;
     if (pos->m == 0)                        return 0;
     if (pos->n == UINT32_MAX)               return 0;
-    if (pos->m == UINT32_MAX)               return 0;
+    if (pos->m > pos->n)                    return 0;
     if (!isValid_gmtx(pos->arrangement))    return 0;
 
     return 1;
