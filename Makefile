@@ -47,7 +47,17 @@ obj: ; mkdir obj
 
 obj/games: obj; mkdir obj/games
 
-obj/games/upsidedown: obj/games; mkdir obj/games/chess1d
+obj/games/upsidedown: obj/games; mkdir obj/games/upsidedown
+
+obj/games/upsidedown/posinfo.o:             \
+    obj/games/upsidedown                    \
+    include/games/upsidedown/posinfo.h      \
+    padkit/include/padkit/chunk.h           \
+    padkit/include/padkit/chunkset.h        \
+    padkit/include/padkit/debug.h           \
+    padkit/include/padkit/graphmatrix.h     \
+    src/games/upsidedown/posinfo.c          \
+    ; ${COMPILE} ${INCLUDES} src/games/upsidedown/posinfo.c -c -o obj/games/upsidedown/posinfo.o
 
 obj/gamesolver.o: obj                       \
     include/games.h                         \
@@ -62,7 +72,7 @@ obj/gamesolver.o: obj                       \
     padkit/include/padkit/reallocate.h      \
     padkit/include/padkit/stack.h           \
     src/gamesolver.c                        \
-    ; ${COMPILE} ${INCLUDES} src/gamesolver.c -c -o obj/gamesolver.o
+    ; ${COMPILE} ${INCLUDES} -DGAME_ID=${GAMEID} src/gamesolver.c -c -o obj/gamesolver.o
 
 obj/gametree: obj; mkdir obj/gametree
 

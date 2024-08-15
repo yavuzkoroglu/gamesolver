@@ -1,7 +1,5 @@
 #ifndef GAMES_POSINFO_H
     #define GAMES_POSINFO_H
-    #include <stdbool.h>
-    #include <stdint.h>
     #include "padkit/chunkset.h"
 
     #define C1D_MIN_COORD               (1)

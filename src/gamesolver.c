@@ -1,14 +1,21 @@
+#include <inttypes.h>
 #include "gametree.h"
 
 int main(int argc, char* argv[]) {
-    if (argc < 2) {
-        printf("\nUsage: %s <initial-position-file>\n\n", argv[0]);
+    if (argc < 3) {
+        printf("\nUsage: %s <initial-position-file> <max-depth>\n\n", argv[0]);
         return EXIT_SUCCESS;
     }
 
     FILE* const posStream = fopen(argv[1], "r");
     if (posStream == NULL) {
         printf("\nERROR: Cannot open %s\n\n", argv[1]);
+        return EXIT_FAILURE;
+    }
+
+    uint32_t maxDepth;
+    if (sscanf(argv[2], "%"SCNu32, &maxDepth) != 1) {
+        printf("\nERROR: <max-depth> must be a positive integer\n\n");
         return EXIT_FAILURE;
     }
 

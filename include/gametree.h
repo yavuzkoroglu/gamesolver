@@ -3,14 +3,11 @@
     #include "gametree/ply.h"
     #include "gametree/position.h"
     #include "padkit/chunkset.h"
+    #include "padkit/stack.h"
 
-    #define GTREE_CSET_POS  0
-    #define GTREE_CSET_PLY  1
-    #define GTREE_CSET_LAST GTREE_CSET_PLY
     typedef struct GameTreeBody {
-        ChunkSet                sets[GTREE_CSET_LAST + 1];
+        ChunkSet                posSet[1];
         DECLARE_STACK(Position, posStack)
-        DECLARE_STACK(Ply,      plyStack)
     } GameTree;
 
     #define GTREE_CONSTRUCT_SUCCESS                         0
